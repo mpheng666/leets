@@ -3,47 +3,50 @@ public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         
         double median = 0;
-        int total_len = nums1.size() + nums2.size();
+        int s1 = nums1.size();
+        int s2 = nums2.size();
+        int total_len = s1 + s2;
+        int half_len = total_len/2;
         int position_counter = 0;
         int ptr1 = 0;
         int ptr2 = 0;
         double last1 = 0;
         double last2 = 0;
         
-        while(position_counter <= total_len/2)
+        while(position_counter <= half_len)
         {
             // std::cout << "ptr1a: " << ptr1 << "\t";      
             // std::cout << "ptr2a: " << ptr2 << "\t";
             
             last2 = last1;
             
-            if(ptr1 == nums1.size())
+            if(ptr1 == s1)
             {
                 last1 = nums2[ptr2];
                 ptr2++;
             }
-            else if(ptr2 == nums2.size())
+            else if(ptr2 == s2)
             {
                 last1 = nums1[ptr1];
                 ptr1++;
             }
             else
             {
-                if(nums1[ptr1] >= nums2[ptr2])
+                if(nums1[ptr1] > nums2[ptr2])
                 {
-                    if(ptr2 != nums2.size())
-                    {
+                    // if(ptr2 != nums2.size())
+                    // {
                         last1 = nums2[ptr2];
                         ptr2++;
-                    }
+                    // }
                 }
                 else
                 {
-                    if(ptr1 != nums1.size())
-                    {
+                    // if(ptr1 != nums1.size())
+                    // {
                         last1 = nums1[ptr1];
                         ptr1++;
-                    }
+                    // }
                 }
             }
 
